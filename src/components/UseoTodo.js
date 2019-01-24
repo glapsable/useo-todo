@@ -1,5 +1,6 @@
 import React from 'react';
 import Header from './Header';
+import Footer from './Footer';
 
 const UseoTodo = () => (
   <div>
@@ -7,6 +8,7 @@ const UseoTodo = () => (
     <main className="content-container">
       <p>ale fajna ta apka</p>
     </main>
+    <Footer />
   </div>
 );
 
