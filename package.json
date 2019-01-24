@@ -1,0 +1,8 @@
+{
+  "name": "useo-todo",
+  "version": "1.0.0",
+  "main": "index.js",
+  "repository": "git@github.com:glapsable/useo-todo.git",
+  "author": "Mariusz Glapka <mar.glapka@gmail.com>",
+  "license": "MIT"
+}
