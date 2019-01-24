@@ -1,6 +1,5 @@
-const dupa = 'dupa';
-console.log(dupa);
+import React from 'react';
+import ReactDOM from 'react-dom';
+import UseoTodo from './components/UseoTodo';
 
-const square = num => num * num;
-
-console.log(square(3));
+ReactDOM.render(<UseoTodo />, document.getElementById('app'));
