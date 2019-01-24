@@ -1,25 +1,22 @@
 .table-row {
   display: flex;
   border-bottom: .1rem solid #d2d5d7;
+  border-left: .1rem solid #d2d5d7;
+  border-right: .1rem solid #d2d5d7;
   font-size: $s-font;
-}
-.table-row--header {
-  background-color: #e9ebec;
-  border: .1rem solid #d2d5d7;
-  border-top-left-radius: .5rem;
-  border-top-right-radius: .5rem;
-  font-weight: bold;
-  & > div {
-    border: none;
-  }
+  background-color: #f7f7f7;
+  height: 5rem;
 }
 .table-row__cell {
-  padding: $m-size 0;
-  text-align: center;
+  display: flex;
+  justify-content: center;
+  align-items: center;
   border-right: .1rem solid #d2d5d7;
+  &:last-of-type {
+    border:none;
+  }
 }
 .table-row__cell--1 {
-  border-left: .1rem solid #d2d5d7;
   width: 10%;
 }
 .table-row__cell--2 {

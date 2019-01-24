@@ -1,0 +1,6 @@
+.list-items-list {
+  & > div:last-of-type > div {
+    border-bottom-left-radius: .5rem;
+    border-bottom-right-radius: .5rem;
+  }
+}
