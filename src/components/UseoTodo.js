@@ -4,7 +4,9 @@ import Header from './Header';
 const UseoTodo = () => (
   <div>
     <Header />
-    <p>ale fajna ta apka</p>
+    <main className="content-container">
+      <p>ale fajna ta apka</p>
+    </main>
   </div>
 );
 

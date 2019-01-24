@@ -1,3 +1,9 @@
 .header {
-  background-color: orange;
+  padding: $s-size 0;
+  background-color: $orange;
+}
+.header__title {
+  margin: 0;
+  color: white;
+  font-size: $l-font;
 }
