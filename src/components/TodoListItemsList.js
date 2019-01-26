@@ -3,32 +3,20 @@ import { connect } from 'react-redux';
 import PropTypes from 'prop-types';
 import TodoListItem from './TodoListItem';
 import selectNotes from '../selectors/notes';
-import { toggleNoteComplete, removeNote } from '../actions/notes';
 
-const TodoListItemsList = ({ notes, dispatch }) => {
-  const onToggleNoteComplete = (id) => {
-    dispatch(toggleNoteComplete({ id }));
-  };
-  const onRemoveNote = (id) => {
-    dispatch(removeNote({ id }));
-  };
-  return (
-    <div className="list-items-list">
-      {notes.map(note => (
-        <TodoListItem
-          key={note.id}
-          {...note}
-          onToggleNoteComplete={onToggleNoteComplete}
-          onRemoveNote={onRemoveNote}
-        />
-      ))}
-    </div>
-  );
-};
+const TodoListItemsList = ({ notes }) => (
+  <div className="list-items-list">
+    {notes.map(note => (
+      <TodoListItem
+        key={note.id}
+        {...note}
+      />
+    ))}
+  </div>
+);
 
 TodoListItemsList.propTypes = {
   notes: PropTypes.arrayOf(PropTypes.object),
-  dispatch: PropTypes.func.isRequired,
 };
 
 TodoListItemsList.defaultProps = {
