@@ -6,12 +6,14 @@ import selectNotes from '../selectors/notes';
 
 const TodoListItemsList = ({ notes }) => (
   <div className="list-items-list">
-    {notes.map(note => (
-      <TodoListItem
-        key={note.id}
-        {...note}
-      />
-    ))}
+    {notes.length ? (
+      notes.map(note => (
+        <TodoListItem
+          key={note.id}
+          {...note}
+        />
+      ))
+    ) : <p>There is no any notes ;(</p>}
   </div>
 );
 

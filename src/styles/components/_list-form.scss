@@ -11,4 +11,7 @@
   padding: $s-size;
   width: 90%;
   outline: none;
+  &--error {
+    border-bottom: .3rem solid red;
+  }
 }
