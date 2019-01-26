@@ -1,12 +1,24 @@
 import React from 'react';
+import { connect } from 'react-redux';
+import PropTypes from 'prop-types';
 import TodoListItem from './TodoListItem';
 
-const TodoListItemsList = () => (
+const TodoListItemsList = ({ notes }) => (
   <div className="list-items-list">
-    <TodoListItem />
-    <TodoListItem />
-    <TodoListItem />
+    {notes.map(note => <TodoListItem content={note.content} deadline={note.deadline} />)}
   </div>
 );
 
-export default TodoListItemsList;
+TodoListItemsList.propTypes = {
+  notes: PropTypes.arrayOf(PropTypes.object),
+};
+
+TodoListItemsList.defaultProps = {
+  notes: [],
+};
+
+const ConnectedTodoListItemsList = connect(state => ({
+  notes: state,
+}))(TodoListItemsList);
+
+export default ConnectedTodoListItemsList;

@@ -2,15 +2,15 @@ const path = require('path');
 
 module.exports = {
   mode: 'development',
-  entry: './src/playground/redux-notes.js',
+  entry: './src/app.js',
   output: {
     path: path.join(__dirname, 'public'),
     filename: 'bundle.js',
   },
   module: {
     rules: [{
-      // loader: ['babel-loader', 'eslint-loader'],
-      loader: ['babel-loader'],
+      loader: ['babel-loader', 'eslint-loader'],
+      // loader: ['babel-loader'],
       test: /\.js$/,
       exclude: /node_modules/,
     }, {
