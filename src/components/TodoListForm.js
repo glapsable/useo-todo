@@ -1,4 +1,5 @@
 import React from 'react';
+import { connect } from 'react-redux';
 
 const TodoListForm = () => (
   <div className="list-form">
@@ -15,4 +16,8 @@ const TodoListForm = () => (
   </div>
 );
 
-export default TodoListForm;
+// const mapStateToProps = state => ({
+//
+// });
+
+export default connect(undefined, undefined)(TodoListForm);

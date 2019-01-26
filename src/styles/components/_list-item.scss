@@ -1,6 +1,9 @@
 .list-item {
 
 }
+.list-item__completed {
+  text-decoration: line-through;
+}
 .list-item__actions {
   justify-content: space-around;
 }
