@@ -1,18 +1,16 @@
 import React from 'react';
 import { connect } from 'react-redux';
+import PropTypes from 'prop-types';
 import moment from 'moment';
 import { SingleDatePicker } from 'react-dates';
+import { addNote } from '../actions/notes';
 import 'react-dates/initialize';
 import 'react-dates/lib/css/_datepicker.css';
-
-const now = moment();
-console.log(now.format('YYYY-MM-DD'));
 
 class TodoListForm extends React.Component {
   state = {
     content: '',
-    // deadline: '',
-    date: moment(),
+    deadline: moment(),
     calendarFocused: false,
     error: '',
   };
@@ -22,9 +20,9 @@ class TodoListForm extends React.Component {
     this.setState(() => ({ content }));
   };
 
-  onDateChange = (date) => {
-    if (date) {
-      this.setState(() => ({ date }));
+  onDateChange = (deadline) => {
+    if (deadline) {
+      this.setState(() => ({ deadline }));
     }
   };
 
@@ -35,23 +33,28 @@ class TodoListForm extends React.Component {
   };
 
   onSubmit = (e) => {
-    const { content } = this.state;
     e.preventDefault();
+    const { content, deadline } = this.state;
+    const { dispatch } = this.props;
 
     if (!content || content.trim() === '') {
-      this.setState(() => ({
-        error: 'Please place a note text',
-      }));
+      this.setState(() => ({ error: 'Please place a note text' }));
     } else {
+      const note = {
+        content,
+        deadline: deadline.format('YYYY-MM-DD'),
+      };
+      dispatch(addNote(note));
       this.setState(() => ({
         error: '',
+        content: '',
       }));
     }
   };
 
   render() {
     const {
-      content, date, calendarFocused, error,
+      content, deadline, calendarFocused, error,
     } = this.state;
     return (
       <div className="list-form">
@@ -70,7 +73,7 @@ class TodoListForm extends React.Component {
           </div>
           <div className="table-row__cell table-row__cell--3">
             <SingleDatePicker
-              date={date}
+              date={deadline}
               onDateChange={this.onDateChange}
               focused={calendarFocused}
               onFocusChange={this.onFocusChange}
@@ -85,6 +88,10 @@ class TodoListForm extends React.Component {
     );
   }
 }
+
+TodoListForm.propTypes = {
+  dispatch: PropTypes.func.isRequired,
+};
 
 // const mapStateToProps = state => ({
 //
