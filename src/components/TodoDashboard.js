@@ -6,7 +6,7 @@ const TodoDashboard = () => (
     <div className="content-container">
       <h2 className="dashboard__title">My Todo List</h2>
       <TodoList />
-      <button className="button dashboard__button" type="button">Load more</button>
+      {/* <button className="button dashboard__button" type="button">Load more</button> */}
     </div>
   </main>
 );
