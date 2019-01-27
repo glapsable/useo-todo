@@ -16,39 +16,43 @@ export const startAddNote = (noteData = {}) => (dispatch) => {
     .then((ref) => {
       dispatch(addNote({
         id: ref.data.note.id,
+        completed: ref.data.note.completed,
         ...note,
       }));
-    }).catch(error => console.log(error));
+    }).catch(error => throw (error));
 };
 
-// export const editNote = (id, updates) => ({
-//   type: 'EDIT_NOTE',
-//   id,
-//   updatedAt: moment().toISOString(),
-//   updates,
-// });
-
-export const toggleNoteComplete = ({ id } = {}) => ({
-  type: 'TOGGLE_NOTE_COMPLETE',
+export const setNoteToComplete = ({ id } = {}) => ({
+  type: 'SET_NOTE_TO_COMPLETE',
   id,
 });
+export const startSetNoteToComplete = ({ id } = {}) => dispatch => axios.put(`${apiUrl}/notes/${id}/completed`)
+  .then(() => {
+    dispatch(setNoteToComplete({ id }));
+  });
+
+export const setNoteToUncomplete = ({ id } = {}) => ({
+  type: 'SET_NOTE_TO_UNCOMPLETE',
+  id,
+});
+export const startSetNoteToUncomplete = ({ id } = {}) => dispatch => axios.put(`${apiUrl}/notes/${id}/uncompleted`)
+  .then(() => {
+    dispatch(setNoteToUncomplete({ id }));
+  });
+
 export const removeNote = ({ id } = {}) => ({
   type: 'REMOVE_NOTE',
   id,
 });
-export const startRemoveNote = ({ id } = {}) => {
-  return (dispatch) => {
-    return axios.delete(`${apiUrl}/notes/${id}`).then((ref) => {
-      dispatch(removeNote({ id }));
-    }).catch(error => console.log(error));
-  };
-};
+export const startRemoveNote = ({ id } = {}) => dispatch => axios.delete(`${apiUrl}/notes/${id}`)
+  .then(() => {
+    dispatch(removeNote({ id }));
+  }).catch(error => throw (error));
 
 export const setNotes = notes => ({
   type: 'SET_NOTES',
   notes,
 });
-
 export const startSetNotes = () => dispatch => axios.get(`${apiUrl}/notes`)
   .then((ref) => {
     const notes = [...ref.data.notes];

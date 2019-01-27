@@ -7,23 +7,22 @@ export default (state = notesReducerDefaultState, action) => {
         ...state,
         action.note,
       ];
-    case 'EDIT_NOTE':
+    case 'SET_NOTE_TO_COMPLETE':
       return state.map((note) => {
         if (note.id === action.id) {
           return {
             ...note,
-            updatedAt: action.updatedAt,
-            ...action.updates,
+            completed: true,
           };
         }
         return note;
       });
-    case 'TOGGLE_NOTE_COMPLETE':
+    case 'SET_NOTE_TO_UNCOMPLETE':
       return state.map((note) => {
         if (note.id === action.id) {
           return {
             ...note,
-            completed: !note.completed,
+            completed: false,
           };
         }
         return note;
