@@ -1,4 +1,3 @@
-import * as moment from 'moment';
 import axios from 'axios';
 
 const apiUrl = 'http://useo-notes.herokuapp.com';
@@ -22,12 +21,12 @@ export const startAddNote = (noteData = {}) => (dispatch) => {
     }).catch(error => console.log(error));
 };
 
-export const editNote = (id, updates) => ({
-  type: 'EDIT_NOTE',
-  id,
-  updatedAt: moment().toISOString(),
-  updates,
-});
+// export const editNote = (id, updates) => ({
+//   type: 'EDIT_NOTE',
+//   id,
+//   updatedAt: moment().toISOString(),
+//   updates,
+// });
 
 export const toggleNoteComplete = ({ id } = {}) => ({
   type: 'TOGGLE_NOTE_COMPLETE',
@@ -37,6 +36,13 @@ export const removeNote = ({ id } = {}) => ({
   type: 'REMOVE_NOTE',
   id,
 });
+export const startRemoveNote = ({ id } = {}) => {
+  return (dispatch) => {
+    return axios.delete(`${apiUrl}/notes/${id}`).then((ref) => {
+      dispatch(removeNote({ id }));
+    }).catch(error => console.log(error));
+  };
+};
 
 export const setNotes = notes => ({
   type: 'SET_NOTES',

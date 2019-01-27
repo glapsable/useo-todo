@@ -1,7 +1,7 @@
 import React from 'react';
 import { connect } from 'react-redux';
 import PropTypes from 'prop-types';
-import { removeNote as startRemoveNote, toggleNoteComplete as startToggleNoteComplete } from '../actions/notes';
+import { startRemoveNote, toggleNoteComplete as startToggleNoteComplete } from '../actions/notes';
 
 const TodoListItem = ({
   id, content, deadline, completed, removeNote, toggleNoteComplete,
