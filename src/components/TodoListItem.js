@@ -29,7 +29,7 @@ TodoListItem.propTypes = {
   content: PropTypes.string.isRequired,
   deadline: PropTypes.string,
   completed: PropTypes.bool.isRequired,
-  id: PropTypes.string.isRequired,
+  id: PropTypes.number.isRequired,
   dispatch: PropTypes.func.isRequired,
 };
 

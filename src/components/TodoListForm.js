@@ -3,7 +3,7 @@ import { connect } from 'react-redux';
 import PropTypes from 'prop-types';
 import moment from 'moment';
 import { SingleDatePicker } from 'react-dates';
-import { addNote } from '../actions/notes';
+import { startAddNote } from '../actions/notes';
 import 'react-dates/initialize';
 import 'react-dates/lib/css/_datepicker.css';
 
@@ -35,7 +35,7 @@ class TodoListForm extends React.Component {
   onSubmit = (e) => {
     e.preventDefault();
     const { content, deadline } = this.state;
-    const { dispatch } = this.props;
+    const { addNote } = this.props;
 
     if (!content || content.trim() === '') {
       this.setState(() => ({ error: 'Please place a note text' }));
@@ -44,7 +44,7 @@ class TodoListForm extends React.Component {
         content,
         deadline: deadline.format('YYYY-MM-DD'),
       };
-      dispatch(addNote(note));
+      addNote(note);
       this.setState(() => ({
         error: '',
         content: '',
@@ -90,11 +90,11 @@ class TodoListForm extends React.Component {
 }
 
 TodoListForm.propTypes = {
-  dispatch: PropTypes.func.isRequired,
+  addNote: PropTypes.func.isRequired,
 };
 
-// const mapStateToProps = state => ({
-//
-// });
+const mapDispatchToProps = dispatch => ({
+  addNote: expense => dispatch(startAddNote(expense)),
+});
 
-export default connect(undefined, undefined)(TodoListForm);
+export default connect(undefined, mapDispatchToProps)(TodoListForm);
