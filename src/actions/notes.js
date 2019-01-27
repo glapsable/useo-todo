@@ -1,4 +1,3 @@
-// import uuid from 'uuid';
 import * as moment from 'moment';
 import axios from 'axios';
 
@@ -18,12 +17,9 @@ export const startAddNote = (noteData = {}) => (dispatch) => {
     .then((ref) => {
       dispatch(addNote({
         id: ref.data.note.id,
-        completed: false,
-        createdAt: moment().toISOString(),
-        updatedAt: moment().toISOString(),
         ...note,
       }));
-    });
+    }).catch(error => console.log(error));
 };
 
 export const editNote = (id, updates) => ({
@@ -32,6 +28,7 @@ export const editNote = (id, updates) => ({
   updatedAt: moment().toISOString(),
   updates,
 });
+
 export const toggleNoteComplete = ({ id } = {}) => ({
   type: 'TOGGLE_NOTE_COMPLETE',
   id,
@@ -40,3 +37,14 @@ export const removeNote = ({ id } = {}) => ({
   type: 'REMOVE_NOTE',
   id,
 });
+
+export const setNotes = notes => ({
+  type: 'SET_NOTES',
+  notes,
+});
+
+export const startSetNotes = () => dispatch => axios.get(`${apiUrl}/notes`)
+  .then((ref) => {
+    const notes = [...ref.data.notes];
+    dispatch(setNotes(notes));
+  });

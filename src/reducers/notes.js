@@ -30,6 +30,8 @@ export default (state = notesReducerDefaultState, action) => {
       });
     case 'REMOVE_NOTE':
       return state.filter(({ id }) => id !== action.id);
+    case 'SET_NOTES':
+      return action.notes;
     default:
       return state;
   }
